@@ -5,7 +5,7 @@ import { DAYS, getDateArray } from "../Utils";
 interface Props {
   month: number;
   year: number;
-  onCellClick: (date: number) => void;
+  onCellClick: (eventData : any) => void;
   getEvents: (date: number) => any[];
 }
 
@@ -16,7 +16,7 @@ const CalLayout: React.FC<Props> = ({ month, year, onCellClick, getEvents }) => 
   const rows = dateArray.map((week, i) => (
     <div className="flex w-full" key={i}>
       {week.map((date, j) => (
-        <div className="w-full h-32 shadow-sm pt-2 pr-2 " key={j}>
+        <div className="w-full relative h-32 shadow-sm px-2 " key={j}>
           <DateBox onClick={onCellClick} date={date} events={getEvents(date)} />
         </div>
       ))}
@@ -38,4 +38,3 @@ const CalLayout: React.FC<Props> = ({ month, year, onCellClick, getEvents }) => 
 };
 
 export default CalLayout;
-

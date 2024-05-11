@@ -1,11 +1,13 @@
 import CalLayout from "./CalLayout";
 import DateBox from "./DateBox";
 import InlineEditLabel from "./InlineEditLabel";
-import Modal from "./Model";
+import LOADER from "./Common/LOADER";
+import MODEL from "./Common/MODEL";
 
 export{
     CalLayout,
     DateBox,
     InlineEditLabel,
-    Modal
+    MODEL,
+    LOADER
 }

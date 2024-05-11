@@ -1,30 +1,39 @@
 import React from "react";
-
+import { getImageThumbUrl } from "../Functions";
 interface Props {
-  onClick: (date: number) => void;
+  onClick: (eventData:any) => void;
   date: number | null;
   events: { id: number; title: string }[];
 }
 
 const DateBox: React.FC<Props> = ({ onClick, date, events }) => {
   const handleClick = () => {
-    if (date) {
-      onClick(date);
+    if (date && getImageThumbUrl(events, false)) {
+      onClick(events);
     }
   };
-
-  let eventList = null;
   let renderedDate = null;
-
-  if (events.length > 0) {
-    eventList = events.map((event, key) => <li key={key}>{event.title}</li>);
-  }
 
   if (date) {
     renderedDate = (
-      <div className="w-full cursor-pointer" onClick={handleClick}>
-        <span className="w-full">{date}</span>
-        <ul>{eventList}</ul>
+      <div
+        style={{
+          backgroundImage: `url(${getImageThumbUrl(events, false)})`,
+          backgroundPosition: "center",
+          objectFit: "contain",
+        }}
+        className="w-full flex items-start justify-end h-full cursor-pointer pt-2 pr-2"
+        onClick={handleClick}
+      >
+        <div
+          className={`min-w-[30px] max-w-[30px] min-h-[30px] max-h-[30px] flex items-center justify-center ${
+            getImageThumbUrl(events, false)
+              ? " rounded-full bg-blue-500 text-white"
+              : ""
+          } `}
+        >
+          {date}
+        </div>
       </div>
     );
   } else {

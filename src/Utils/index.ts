@@ -1,13 +1,15 @@
 const WEEK_LENGTH: number = 7;
+
 const MONTHS: string[] = [
-  "January", "February", "March", "April", "May", "June", 
+  "", "January", "February", "March", "April", "May", "June", 
   "July", "August", "September", "October", "November", "December"
 ];
+
 const DAYS: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 function getDateArray(month: number, year: number): number[][] {
-  const firstDateOfMonth: Date = new Date(year, month, 1);
-  const lastDateOfMonth: Date = new Date(year, month + 1, 0);
+  const firstDateOfMonth: Date = new Date(year, month - 1, 1);
+  const lastDateOfMonth: Date = new Date(year, month, 0);
   const firstDayOfMonth: number = firstDateOfMonth.getDay();
   let dateArray: (number | null)[] = new Array(42).fill(null);
   
@@ -22,5 +24,6 @@ function getDateArray(month: number, year: number): number[][] {
 
   return splicedDateArray;
 }
+
 
 export { WEEK_LENGTH, MONTHS, DAYS, getDateArray };
